@@ -1,0 +1,83 @@
+cas (3.8.0) unstable; urgency=low
+
+  * FastCGI server; API changes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Tue, 10 Mar 2016 15:15:00 +0300
+
+cas (3.7.4) unstable; urgency=low
+
+  * XML Parser bug fixes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Mon, 11 Jan 2016 17:03:00 +0300
+
+cas (3.7.3) unstable; urgency=low
+
+  * File uploader fixes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Mon,  5 Oct 2015 15:13:00 +0300
+
+cas (3.7.2) unstable; urgency=low
+
+  * ASCookie fixes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Thu, 25 Dec 2014 18:42:00 +0300
+
+cas (3.7.1) unstable; urgency=low
+
+  * Apache 24 fixes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Mon,  4 Aug 2014 19:12:00 +0300
+
+cas (3.7.0) unstable; urgency=low
+
+  * BSON/BSON-RPC support
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Tue,  2 Jun 2014 21:59:00 +0300
+
+cas (3.6.1) unstable; urgency=low
+
+  * Debian package fixes
+
+ -- Andrey V. Shetukhin <stellar@communico.pro>  Thu, 23 Mar 2013 21:35:00 +0300
+
+cas (3.6.0) unstable; urgency=low
+
+  * New ASRequest field: raw_post_data
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Mon, 18 Mar 2013 15:50:00 +0300
+
+cas (3.5.7) unstable; urgency=low
+
+  * Fixes for gcc 4.7 on CentOS
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Thu,  3 Oct 2012 19:06:00 +0300
+
+cas (3.5.6) unstable; urgency=low
+
+  * Fixes in XMLRPCView
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Tue, 29 May 2012 17:55:00 +0300
+
+cas (3.5.5) unstable; urgency=low
+
+  * New field in ASRequest structure: uri_components_unescaped
+
+ -- E. Kurganov <e.kurganov@rambler-co.ru>  Tue, 22 Feb 2012 16:04:00 +0300
+
+cas (3.5.4) unstable; urgency=low
+
+  * Version bump
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Tue, 22 Feb 2012 14:44:00 +0300
+
+cas (3.5.3) unstable; urgency=low
+
+  * New field in ASRequest structure: uri_components_unescaped
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Sat, 29 Oct 2011 16:44:00 +0300
+
+cas (3.5.2) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Andrei V. Shetuhin <reki@reki.ru>  Mon, 18 Jul 2011 16:39:00 +0300

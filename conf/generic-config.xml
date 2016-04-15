@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<CASHostConfig version="1.0">
+	<DefaultValueSet>
+		<SQLConnector>
+			<Driver>mysql1</Driver>
+		</SQLConnector>
+		<q>1</q>
+		<SQLConnector>
+			<Driver>mysql2</Driver>
+		</SQLConnector>
+		<SQLConnector>
+			<Driver>
+				<Prop1>1</Prop1>
+				<Prop1>2</Prop1>
+				<Prop1>3</Prop1>
+			</Driver>
+		</SQLConnector>
+	</DefaultValueSet>
+</CASHostConfig>

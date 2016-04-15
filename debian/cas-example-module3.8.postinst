@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+VIEW=ASExampleModule
+
+if [ -e /etc/cas/globalconf.a/${VIEW}.xml ]; then
+	cas-englobal ${VIEW} || true
+fi
+
+if [ -e /etc/cas/modules.a/${VIEW}.xml ]; then
+	cas-enmod ${VIEW} || true
+fi
+
+exit 0

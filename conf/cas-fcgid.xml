@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<CASFCGIConfig version="3.8">
+	<Listen ipv4="127.0.0.1" port="8899"/>
+
+	<MaxClients>1000</MaxClients>
+	<MinFreeWorkers>5</MinFreeWorkers>
+	<MaxFreeWorkers>7</MaxFreeWorkers>
+
+	<MaxRequests>1000</MaxRequests>
+
+	<ListenQueue>128</ListenQueue>
+	<IOTimeout>1000</IOTimeout>
+
+	<HostName>example.com</HostName>
+	<GlobalConfigFile>/etc/cas/global-config.xml</GlobalConfigFile>
+	<HostConfigFile>/etc/cas/vhosts.e/example.xml</HostConfigFile>
+
+	<StatusURI>/server-status</StatusURI>
+
+	<User>cas</User>
+	<Group>cas</Group>
+	<PidFile>/var/run/cas-fcgid.pid</PidFile>
+
+</CASFCGIConfig>
+

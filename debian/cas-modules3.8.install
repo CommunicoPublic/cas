@@ -1,0 +1,10 @@
+usr/lib/cas/mod_ctpp_view.so
+usr/lib/cas/mod_http_redirect_view.so
+usr/lib/cas/mod_bson_view.so
+usr/lib/cas/mod_json_view.so
+usr/lib/cas/mod_bsonrpc_view.so
+usr/lib/cas/mod_jsonrpc_view.so
+usr/lib/cas/mod_plain_view.so
+usr/lib/cas/mod_tabseparated_view.so
+usr/lib/cas/mod_xmlrpc_view.so
+usr/lib/cas/mod_xml_view.so

@@ -1,0 +1,26 @@
+{
+	"LocationURI" : "/plain-test1",
+
+	"RequestMethod" : "GET",
+
+	"Host" : "www.example.com",
+	"Port" : 80,
+	"RemoteIP" : "127.0.0.1",
+
+	"Headers" :
+	{
+		"Referer": "http://www.example.com/",
+		"X-Foo" : "bar"
+	},
+
+	"Arguments" :
+	{
+		"foo": "bar"
+	},
+
+	"Cookies" :
+	{
+		"example-cookie": "SomeCookieValue"
+	}
+
+}

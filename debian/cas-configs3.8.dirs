@@ -1,0 +1,11 @@
+etc/cas
+etc/cas/globalconf.a
+etc/cas/modules.a
+etc/cas/handlers.a
+etc/cas/views.a
+etc/cas/vhosts.a
+etc/cas/globalconf.e
+etc/cas/modules.e
+etc/cas/handlers.e
+etc/cas/views.e
+etc/cas/vhosts.e

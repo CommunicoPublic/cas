@@ -1,0 +1,159 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides:            cas-fcgid
+# Required-Start:      $local_fs $remote_fs $network $syslog $named
+# Required-Stop:       $local_fs $remote_fs $network $syslog $named
+# Should-Start:        $local_fs
+# Should-Stop:         $local_fs
+# Default-Start:       2 3 4 5
+# Default-Stop:        0 1 6
+# Short-Description:   Start/stop CAS FastCGI daemon
+# Description:         Start/stop CAS FastCGI server
+### END INIT INFO
+
+# Usage:
+# cp /etc/cas-fcgid/cas-fcgid.xml /etc/cas-fcgid/cas-fcgid_server1.xml
+# cp /etc/cas-fcgid/cas-fcgid.xml /etc/cas-fcgid/cas-fcgid_server2.xml
+# start all instances:
+# /etc/init.d/cas-fcgid start
+# start one instance:
+# /etc/init.d/cas-fcgid start server1
+# stop all instances:
+# /etc/init.d/cas-fcgid stop
+# stop one instance:
+# /etc/init.d/cas-fcgid stop server1
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/sbin/cas-fcgid
+DAEMONNAME=cas-fcgid
+DAEMONBOOTSTRAP=${DAEMON}
+DESC="CAS FastCGI server"
+
+if [ ! -x $DAEMON ] ; then
+	echo "No $DESC installed"
+	exit 0
+fi
+
+if [ ! -x $DAEMON ] ; then
+	echo "No $DESC installed"
+	exit 0
+fi
+
+set -e
+
+. /lib/lsb/init-functions
+
+# Edit /etc/default/cas-fcgid to change this.
+ENABLE_CAS_FCGID=no
+
+if [ -r /etc/default/cas-fcgid ] ; then
+	. /etc/default/cas-fcgid
+fi
+
+FILES=(/etc/cas-fcgid/cas-fcgid_*.xml)
+if [ -r "${FILES[0]}" ]; then
+	CONFIGS=()
+	for FILE in "${FILES[@]}"; do
+		# remove prefix
+		NAME=${FILE#/etc/cas-fcgid/}
+		# remove suffix
+		NAME=${NAME%.xml}
+
+		# check optional second param
+		if [ $# -ne 2 ]; then
+			# add to config array
+			CONFIGS+=($NAME)
+		elif [ "cas-fcgid_$2" == "$NAME" ]; then
+			# use only one cas
+			CONFIGS=($NAME)
+			break;
+		fi;
+	done;
+
+	if [ ${#CONFIGS[@]} == 0 ];
+	then
+		echo "Config not exist for: $2" >&2
+		exit 1
+	fi;
+else
+	CONFIGS=(cas-fcgid)
+fi;
+
+CONFIG_NUM=${#CONFIGS[@]}
+for ((i=0; i < $CONFIG_NUM; i++)); do
+	NAME=${CONFIGS[${i}]}
+	PIDFILE=`cat /etc/cas-fcgid/${NAME}.xml | grep -i PidFile | awk '{print \$1}'| sed 's/.*<PidFile>\(.*\)<\/PidFile>.*/\1/gi'`
+
+	case "$1" in
+		start)
+			echo -n "Starting $DESC: "
+			if [ $ENABLE_CAS_FCGID = yes ]; then
+				RETVAL=`start-stop-daemon --quiet --start --pidfile $PIDFILE --exec $DAEMON --test > /dev/null; echo $?`
+				if [ $RETVAL = 1 ]; then
+					if [ -f $PIDFILE ]; then
+						PID=`cat $PIDFILE` > /dev/null || true
+						echo "$NAME already running with PID $PID"
+					else
+						echo "$NAME already running with unknown PID"
+					fi
+				elif [ $RETVAL = 0 ]; then
+					RETVAL=`start-stop-daemon --quiet --start --pidfile $PIDFILE --exec "$DAEMONBOOTSTRAP" -- -f /etc/cas-fcgid/${NAME}.xml ; echo $?`
+					if [ $RETVAL = 0 ]; then
+						echo "$NAME started"
+					else
+						echo "$NAME could not be started"
+					fi
+				else
+					exit $RETVAL
+				fi
+			else
+				echo "$NAME disabled in /etc/default/cas-fcgid."
+			fi
+			;;
+		stop)
+			echo -n "Stopping $DESC transactionally: "
+			start-stop-daemon --quiet --oknodo --stop --retry 60 --pidfile $PIDFILE || true
+			echo "$NAME stopped."
+			rm -f $PIDFILE
+			;;
+		destroy)
+			echo -n "Stopping $DESC: "
+			start-stop-daemon --stop --oknodo --retry 5 --signal INT --pidfile $PIDFILE --exec $DAEMON || true
+			echo "$NAME."
+			rm -f $PIDFILE
+			;;
+		restart|force-reload)
+			echo -n "Restarting $DESC: "
+			start-stop-daemon --stop --quiet --oknodo --retry 5 --pidfile $PIDFILE || true
+			rm -f $PIDFILE
+			if [ $ENABLE_CAS_FCGID = yes ]; then
+				RETVAL=`start-stop-daemon --quiet --start --pidfile $PIDFILE --exec "$DAEMONBOOTSTRAP" -- -f /etc/cas-fcgid/${NAME}.xml ; echo $?`
+				if [ $RETVAL = 0 ]; then
+					echo "$NAME restarted"
+				else
+					echo "$NAME could not be restarted"
+				fi
+			else
+				echo "$NAME disabled in /etc/default/cas-fcgid."
+			fi
+			;;
+		logrotate)
+			echo -n "Rotating logs $DESC: "
+			if [ -f $PIDFILE ]; then
+				PID=`cat $PIDFILE` > /dev/null || true
+				RETVAL=`kill -HUP $PID` || true
+				echo "$NAME"
+			fi
+			;;
+		status)
+			status_of_proc -p $PIDFILE $DAEMON $NAME  && exit 0 || exit $?
+			;;
+		*)
+			N=/etc/init.d/$NAME
+			echo "Usage: $N {start|stop|destroy|restart|force-reload|logrotate|status}" >&2
+			exit 1
+			;;
+	esac
+done;
+
+exit 0

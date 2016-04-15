@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+VIEW=XMLView
+
+if [ "$1" != "remove" -a "$1" != "purge" ]; then
+	exit 0
+fi
+
+if [ -e /etc/cas/globalconf.e/${VIEW}.xml ]; then
+	cas-disglobal ${VIEW} || true
+fi
+
+if [ -e /etc/cas/views.e/${VIEW}.xml ]; then
+	cas-disview ${VIEW} || true
+fi
+
+exit 0

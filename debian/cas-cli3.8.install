@@ -1,0 +1,17 @@
+usr/bin/cas-mod
+usr/bin/cas-englobal
+usr/bin/cas-disglobal
+usr/bin/cas-enmod
+usr/bin/cas-dismod
+usr/bin/cas-enhost
+usr/bin/cas-dishost
+usr/bin/cas-enhandler
+usr/bin/cas-dishandler
+usr/bin/cas-enview
+usr/bin/cas-disview
+usr/bin/cas-config
+usr/bin/cas-globalconf
+usr/bin/cas-hostconf
+usr/bin/cas-regexp
+usr/bin/cas-server
+usr/bin/cas-xmlrpc-parser

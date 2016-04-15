@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<CASConfig version="3.8">
+	<LibexecDirs>
+		<!--
+		  Directory for CAS modules
+		-->
+
+		<!-- Local repository -->
+		<LibexecDir>.</LibexecDir>
+
+		<!-- For Linux -->
+		<LibexecDir>/usr/lib/cas</LibexecDir>
+
+		<!-- For FreeBSD -->
+		<LibexecDir>/usr/local/libexec/cas</LibexecDir>
+
+		<!-- For Solaris -->
+		<LibexecDir>/opt/REKIWcas/libexec</LibexecDir>
+
+	</LibexecDirs>
+
+	<ConfigIncludeDirs>
+
+		<!-- Local repository -->
+		<ConfigIncludeDir>.</ConfigIncludeDir>
+
+		<!-- For Linux -->
+		<ConfigIncludeDir>/etc/cas</ConfigIncludeDir>
+
+		<!-- For FreeBSD -->
+		<ConfigIncludeDir>/usr/local/etc/cas</ConfigIncludeDir>
+
+		<!-- For Solaris -->
+		<LibexecDir>/opt/REKIWcas/conf</LibexecDir>
+
+	</ConfigIncludeDirs>
+
+	<!-- List of modules -->
+	<Modules>
+		<!-- Preloaded modules -->
+		<Include file="globalconf.e/*.xml"/>
+	</Modules>
+</CASConfig>

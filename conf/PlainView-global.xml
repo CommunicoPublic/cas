@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- Plain data View implementation -->
+<Module Name="PlainView"  Library="mod_plain_view.so" ModuleType="View"/>

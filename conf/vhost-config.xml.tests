@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<CASHostConfig version="3.8">
+	<!--
+	  Virtual host Name, no aliases need
+	-->
+	<ServerName>example.com</ServerName>
+
+	<!--
+	  Various server directories: server root, temp. dir, etc...
+	-->
+	<Directories>
+		<!--
+		  Server Root
+		-->
+		<ServerRoot>/tmp</ServerRoot>
+
+		<!--
+		  Directory with temp. files
+		-->
+		<TempDir>/tmp</TempDir>
+	</Directories>
+
+	<!--
+	  Request default settings
+	-->
+	<Request>
+<!--
+		<MaxPostSize>30M</MaxPostSize>
+		<MaxFileSize>2M</MaxFileSize>
+-->
+	</Request>
+
+	<!--
+	  Response defaults
+	-->
+	<Response>
+		<DefaultResponseCode>500</DefaultResponseCode>
+		<DefaultContentType>text/plain</DefaultContentType>
+	</Response>
+
+	<!--
+	  Modules per-server configuration
+	-->
+	<Modules>
+		<Module name="ASExampleModule"/>
+	</Modules>
+
+	<!--
+	  List of locations
+	-->
+	<Locations>
+		<Location name="Test">
+			<!--
+			  Location request restrictions
+			-->
+			<Request>
+<!--				<MaxPostSize>30M</MaxPostSize>
+				<MaxFileSize>2M</MaxFileSize>
+-->
+			</Request>
+
+			<!--
+			  Location response defaults
+			-->
+			<Response>
+				<DefaultResponseCode>200</DefaultResponseCode>
+				<DefaultContentType>text/html; charset=windows-1251</DefaultContentType>
+			</Response>
+
+			<!--
+			  List of URI
+			-->
+			<URIList>
+				<URI type="plain">/plain-test</URI>
+				<URI type="regexp">/regexp-test([a-zA-Z0-9]+)</URI>
+			</URIList>
+
+			<!--
+			  MVC controller object
+			-->
+
+			<!--
+			<Controller>
+				<Handler name="CASController"/>
+			</Controller>
+			-->
+
+			<!--
+			  Handlers (a.k.a MVC models)
+			-->
+			<Handlers>
+				<Handler name="ASExampleHandler">
+					<DebugLevel>1</DebugLevel>
+				</Handler>
+			</Handlers>
+
+			<!--
+			  List of finalizers
+			-->
+			<!--
+			<Finalizers>
+				<Handler name="ASExampleHandler">
+					<ErrorReporting>255</ErrorReporting>
+				</Handler>
+			</Finalizers>
+			-->
+
+			<!--
+			  MVC view object
+			-->
+			<Views>
+				<Handler name="CTPPView"/>
+				<Handler name="XMLRPCView"/>
+				<Handler name="XMLView"/>
+			</Views>
+		</Location>
+ 		<Location name="Test1">
+			<!-- List of URI -->
+			<URIList>
+				<URI type="plain">/plain-test1</URI>
+			</URIList>
+
+			<!-- Handlers (a.k.a MVC models) -->
+			<Handlers>
+				<Handler name="ASExampleHandler">
+					<DebugLevel>1</DebugLevel>
+				</Handler>
+			</Handlers>
+
+			<!-- MVC view object -->
+			<Views>
+				<Handler name="CTPPView"/>
+			</Views>
+		</Location>
+	</Locations>
+</CASHostConfig>

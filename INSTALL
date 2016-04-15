@@ -1,0 +1,34 @@
+INSTALLATION INTRODUCTION
+-------------------------
+
+This file describes how to compile and install CTPP2 on your
+system.
+
+        ==============================================
+        =                                            =
+        =  NOTE: You will need an ANSI C++ compiler  =
+        =  with STL support, cmake building system   =
+        = (http://www.cmake.org/), PCRE, iconv and   =
+        =          CTPP2 libraries installed.        =
+        =                                            =
+        ==============================================
+
+
+For most systems, execute the following to compile and install
+CAS:
+        cmake .
+        make
+        make install
+
+If you want to run tests, execute "make test" command.
+
+To clean package, run "./ClearPackage.sh" script.
+
+CONFIGURATION OPTIONS
+---------------------
+
+  BUILD_APACHE13_MODULE - Build Apache 1.3 DSO module, default on
+  BUILD_APACHE2X_MODULE - Build Apache 2.X DSO module, default off
+  DEBUG_MODE - compile with debug output, default off
+  ENABLE_OPTIMIZATION - compile with optimization, default on
+

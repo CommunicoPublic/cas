@@ -1,0 +1,16 @@
+[Unit]
+Description=CAS FastCGI server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+
+PIDFile=/var/run/cas-fcgid/cas-fcgid.pid
+ExecStart=/usr/sbin/cas-fcgid -f /etc/cas-fcgid/cas-fcgid.xml
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target

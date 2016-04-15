@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<CASConfig version="3.8">
+	<LibexecDirs>
+		<!--
+		  Directory for CAS modules
+		-->
+
+		<!-- Local repository -->
+		<LibexecDir>.</LibexecDir>
+
+		<!-- For Linux -->
+		<LibexecDir>/usr/lib/cas</LibexecDir>
+
+		<!-- For FreeBSD -->
+		<LibexecDir>/usr/local/libexec/cas</LibexecDir>
+
+		<!-- For Solaris -->
+		<LibexecDir>/opt/REKIWcas/libexec</LibexecDir>
+
+	</LibexecDirs>
+
+	<!-- List of modules -->
+	<Modules>
+		<!--
+		  Information of CPPAS configuration.
+		  Should use for system administrators and heart-beat tests
+		-->
+
+		<!--
+		  Example informer.
+		-->
+		<Module Name="ASExampleHandler" Library="mod_example_handler.so" ModuleType="Handler"/>
+
+		<!--
+		  Example resource
+		-->
+		<Module Name="ASExampleModule" Library="mod_example_module.so" ModuleType="Module"/>
+
+		<!--
+		  CTPP2 View implementation
+		-->
+		<Module Name="CTPPView"  Library="mod_ctpp_view.so" ModuleType="View">
+			<MaxFunctions>1024</MaxFunctions>
+			<LibexecDirs>
+				<LibexecDir>.</LibexecDir>
+				<LibexecDir>/usr/local/libexec/ctpp</LibexecDir>
+				<LibexecDir>/usr/libexec/ctpp</LibexecDir>
+			</LibexecDirs>
+			<Functions>
+				<Function name="ASFnExample" library="mod_fn_example.so"/>
+			</Functions>
+			<TemplateIncludeDirs>
+				<TemplateIncludeDir>/usr/share/cas/tmpl</TemplateIncludeDir>
+				<TemplateIncludeDir>/usr/local/share/cas/tmpl</TemplateIncludeDir>
+				<TemplateIncludeDir>/var/www/cas/tmpl</TemplateIncludeDir>
+			</TemplateIncludeDirs>
+		</Module>
+
+		<!--
+		  Plain data View implementation
+		-->
+		<Module Name="PlainView"  Library="mod_plain_view.so" ModuleType="View"/>
+
+		<!--
+		  JSON View implementation
+		-->
+		<Module Name="JSONView"   Library="mod_json_view.so" ModuleType="View"/>
+
+		<!--
+		  XML RPC View implementation
+		-->
+		<Module Name="XMLRPCView" Library="mod_xmlrpc_view.so" ModuleType="View"/>
+
+		<!--
+		  XML View implementation
+		-->
+		<Module Name="XMLView"    Library="mod_xml_view.so" ModuleType="View"/>
+
+		<!--
+		  Tab-separated list
+		-->
+		<Module Name="TabSeparatedView" Library="mod_tabseparated_view.so" ModuleType="View"/>
+
+	</Modules>
+</CASConfig>

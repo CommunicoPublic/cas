@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+cas_globalconf="/etc/cas/global-config.xml"
+cas_hostconf="/etc/cas/vhosts.a/example.xml"
+
+cas-enhost example
+
+ucf /usr/share/cas/conf/global-config.xml.sample $cas_globalconf
+ucf /usr/share/cas/conf/vhost-config.xml.sample $cas_hostconf
+
+exit 0

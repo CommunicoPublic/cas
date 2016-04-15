@@ -1,0 +1,6 @@
+usr/bin/cas-xt
+usr/include/*
+usr/lib/*/*.a
+usr/lib/*/libcas.so
+usr/share/cas/xt/*
+usr/share/cas/tmpl/*

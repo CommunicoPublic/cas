@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<title>Document was moved here: <TMPL_var HTMLESCAPE(redirect.url)></title>
+	<meta http-equiv="Refresh" content="0;URL=<TMPL_VAR HTMLESCAPE(redirect.url)>" />
+</head>
+<body>
+	<h1>Document moved</h1>
+	<p>Please, follow this link: <a href="<TMPL_var HTMLESCAPE(redirect.url)>" id="link"><TMPL_var HTMLESCAPE(redirect.name)></a>
+
+<script language="javascript" type="text/javascript"><!--
+try
+{
+	location.replace("<TMPL_var JSESCAPE(redirect.url)>");
+} catch(e) { }
+// --></script>
+</body>
+</html>

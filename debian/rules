@@ -1,0 +1,154 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	# Add here commands to configure the package.
+	cmake -DSKIP_RELINK_RPATH=ON -DBUILD_APACHE2X_MODULE=ON -DBUILD_APACHE13_MODULE=OFF . -DCMAKE_INSTALL_PREFIX=/usr -DCFLAGS="${CFLAGS}" -DCXXFLAGS="${CXXFLAGS}" -DDEB_HOST_MULTIARCH=${DEB_HOST_MULTIARCH} -DCAS_LIB_DIR=lib/${DEB_HOST_MULTIARCH} -DCAS_LIBEXEC_DIR=lib/cas
+	touch configure-stamp
+
+build: build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+
+build-stamp: configure-stamp
+	dh_testdir
+	# Add here commands to compile the package.
+	$(MAKE)
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	# Add here commands to clean up after the build process.
+	/bin/sh ClearPackage.sh
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/apache2/mods-available
+	install -m 0644 $(CURDIR)/debian/libapache2-mod-cas2.load $(CURDIR)/debian/tmp/etc/apache2/mods-available/cas2.load
+	install -m 0644 $(CURDIR)/debian/libapache2-mod-cas2.conf $(CURDIR)/debian/tmp/etc/apache2/mods-available/cas2.conf
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/globalconf.a
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/modules.a
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/handlers.a
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/views.a
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/vhosts.a
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/globalconf.e
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/modules.e
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/handlers.e
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/views.e
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas/vhosts.e
+	install -m 0644 $(CURDIR)/conf/BSONRPCView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/BSONRPCView.xml
+	install -m 0644 $(CURDIR)/conf/BSONView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/BSONView.xml
+	install -m 0644 $(CURDIR)/conf/CTPPView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/CTPPView.xml
+	install -m 0644 $(CURDIR)/conf/JSONRPCView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/JSONRPCView.xml
+	install -m 0644 $(CURDIR)/conf/JSONView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/JSONView.xml
+	install -m 0644 $(CURDIR)/conf/PlainView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/PlainView.xml
+	install -m 0644 $(CURDIR)/conf/TabSeparatedView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/TabSeparatedView.xml
+	install -m 0644 $(CURDIR)/conf/XMLRPCView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/XMLRPCView.xml
+	install -m 0644 $(CURDIR)/conf/XMLView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/XMLView.xml
+	install -m 0644 $(CURDIR)/conf/ASExampleHandler-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/ASExampleHandler.xml
+	install -m 0644 $(CURDIR)/conf/ASExampleHandler-handler.xml $(CURDIR)/debian/tmp/etc/cas/handlers.a/ASExampleHandler.xml
+	install -m 0644 $(CURDIR)/conf/ASExampleModule-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/ASExampleModule.xml
+	install -m 0644 $(CURDIR)/conf/ASExampleModule-module.xml $(CURDIR)/debian/tmp/etc/cas/modules.a/ASExampleModule.xml
+	install -m 0644 $(CURDIR)/conf/ASExampleView-global.xml $(CURDIR)/debian/tmp/etc/cas/globalconf.a/ASExampleView.xml
+	install -m 0644 $(CURDIR)/conf/global-config.xml.sample $(CURDIR)/debian/tmp/etc/cas/global-config.xml
+	install -m 0644 $(CURDIR)/conf/vhost-config.xml.sample $(CURDIR)/debian/tmp/etc/cas/vhosts.a/example.xml
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/default
+	install -m 0644 $(CURDIR)/scripts/cas-fcgid.default $(CURDIR)/debian/tmp/etc/default/cas-fcgid
+	install -m 0644 $(CURDIR)/scripts/cas-fcgid.init $(CURDIR)/debian/cas-fcgid3.8.cas-fcgid.init
+	install -m 0755 -d $(CURDIR)/debian/tmp/etc/cas-fcgid
+	install -m 0644 $(CURDIR)/conf/cas-fcgid.xml $(CURDIR)/debian/tmp/etc/cas-fcgid/cas-fcgid.xml
+	install -m 0755 -d $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleClass.hpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleObject.hpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleClass.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleHandler.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleModule.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleObject.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASExampleView.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0644 $(CURDIR)/examples/ASFnExample.cpp $(CURDIR)/debian/tmp/usr/share/cas/examples
+	install -m 0755 -d $(CURDIR)/debian/tmp/usr/share/cas/tmpl
+	install -m 0644 $(CURDIR)/tmpl/example-footer.tmpl $(CURDIR)/debian/tmp/usr/share/cas/tmpl
+	install -m 0644 $(CURDIR)/tmpl/example-header.tmpl $(CURDIR)/debian/tmp/usr/share/cas/tmpl
+	install -m 0644 $(CURDIR)/tmpl/example.tmpl $(CURDIR)/debian/tmp/usr/share/cas/tmpl
+	install -m 0644 $(CURDIR)/tmpl/fn_test.tmpl $(CURDIR)/debian/tmp/usr/share/cas/tmpl
+	install -m 0755 -d $(CURDIR)/debian/tmp/usr/bin
+	install -m 0644 $(CURDIR)/scripts/cas-mod $(CURDIR)/debian/tmp/usr/bin
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-englobal
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-disglobal
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-enmod
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-dismod
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-enhost
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-dishost
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-enhandler
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-dishandler
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-enview
+	ln -s -r $(CURDIR)/debian/tmp/usr/bin/cas-mod $(CURDIR)/debian/tmp/usr/bin/cas-disview
+	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -a
+	dh_installdocs -a
+	dh_installexamples -a
+	dh_install -a --sourcedir=$(CURDIR)/debian/tmp
+	dh_installinit --no-start --no-restart-on-upgrade --name=cas-fcgid -- defaults 95 05
+	dh_installman -a
+	dh_link -a
+	dpkg-gensymbols -plibcas3.8 -Odebian/libcas3.8.symbols -edebian/libcas3.8/usr/lib/*
+	dh_strip -plibcas3.8 --dbg-package=libcas3.8-dbg
+	dh_strip -pcas-bsonrpc-view3.8 --dbg-package=cas-bsonrpc-view3.8-dbg
+	dh_strip -pcas-bson-view3.8 --dbg-package=cas-bson-view3.8-dbg
+	dh_strip -pcas-ctpp-view3.8 --dbg-package=cas-ctpp-view3.8-dbg
+	dh_strip -pcas-jsonrpc-view3.8 --dbg-package=cas-jsonrpc-view3.8-dbg
+	dh_strip -pcas-json-view3.8 --dbg-package=cas-json-view3.8-dbg
+	dh_strip -pcas-tabseparated-view3.8 --dbg-package=cas-tabseparated-view3.8-dbg
+	dh_strip -pcas-xmlrpc-view3.8 --dbg-package=cas-xmlrpc-view3.8-dbg
+	dh_strip -pcas-xml-view3.8 --dbg-package=cas-xml-view3.8-dbg
+	dh_strip -plibapache2-mod-cas2 --dbg-package=libapache2-mod-cas2-dbg
+	dh_strip -pcas-fcgid3.8 --dbg-package=cas-fcgid3.8-dbg
+	dh_strip -pcas-cli3.8 --dbg-package=cas-cli3.8-dbg
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a -V
+	dh_installdeb -a
+	dh_shlibdeps -a -V
+	echo "apache2:Depends=apache2-mpm-prefork (>> 2.0.52) | apache2-mpm-itk" >>debian/libapache2-mod-cas2.substvars
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
+

@@ -1,0 +1,3 @@
+usr/lib/cas/mod_example_module.so
+etc/cas/globalconf.a/ASExampleModule.xml
+etc/cas/modules.a/ASExampleModule.xml

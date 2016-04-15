@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<methodCall>
+	<methodName>examples.getStateName</methodName>
+	<params>
+		<param>
+			<value>
+				<array>
+					<data>
+						<value><i4>123</i4></value>
+						<value><integer>456</integer></value>
+						<value><boolean>0</boolean></value>
+						<value><boolean>true</boolean></value>
+						<value><boolean>false</boolean></value>
+						<value><boolean>1</boolean></value>
+						<value><double>1234.567</double></value>
+						<value><string>Hello, World!</string></value>
+						<value>Hello, World!</value>
+						<value><base64>SGVsbG8sIFdvcmxkIQ==</base64></value>
+					</data>
+				</array>
+			</value>
+		</param>
+		<param>
+			<value>
+				<array>
+					<data>
+						<value><string>Lorem</string></value>
+						<value><string>ipsum</string></value>
+						<value><string>dolor</string></value>
+						<value><string>sit</string></value>
+						<value><string>amet</string></value>
+						<value>
+							<array>
+								<data>
+									<value><string>consectetur</string></value>
+									<value><string>adipiscing</string></value>
+									<value>elit</value>
+								</data>
+							</array>
+						</value>
+						<value>
+							<struct>
+								<member>
+									<name>w1</name>
+									<value><string>sed</string></value>
+								</member>
+								<member>
+									<name>w2</name>
+									<value><string>do</string></value>
+								</member>
+								<member>
+									<name>w3</name>
+									<value><string>eiusmod</string></value>
+								</member>
+								<member>
+									<name>w4</name>
+									<value><string>tempor</string></value>
+								</member>
+								<member>
+									<name>w5</name>
+									<value><string>incididunt</string></value>
+								</member>
+							</struct>
+						</value>
+					</data>
+				</array>
+			</value>
+		</param>
+		<param>
+			<value>
+				<struct>
+					<member>
+						<name>w6</name>
+						<value><string>ut labore</string></value>
+					</member>
+					<member>
+						<name>w7</name>
+						<value>et dolore magna aliqua</value>
+					</member>
+				</struct>
+			</value>
+		</param>
+	</params>
+</methodCall>

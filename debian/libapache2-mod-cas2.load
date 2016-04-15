@@ -1,0 +1,1 @@
+LoadModule cas_module /usr/lib/apache2/modules/mod_cas2.so

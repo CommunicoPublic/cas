@@ -1,0 +1,79 @@
+#
+# AS++ - C++ Application server extension
+#
+PROJECT(CAS_<TMPL_var module_name>)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0 FATAL_ERROR)
+
+OPTION(DEBUG_MODE          "Enable debug output [default: OFF]" OFF)
+OPTION(ENABLE_OPTIMIZATION "Enable optimization [default: ON]"  ON)
+
+# ################################################################################
+# Macroses
+#
+
+# Standard CMake macroses
+INCLUDE(CheckIncludeFiles)
+INCLUDE(CheckCXXSourceCompiles)
+INCLUDE(CheckSymbolExists)
+INCLUDE(CheckLibraryExists)
+
+# User-defined macroses
+INCLUDE(<TMPL_var cmake_includedir>/RenameModule.cmake)
+INCLUDE(<TMPL_var cmake_includedir>/ConfigurePackage.cmake)
+INCLUDE(<TMPL_var cmake_includedir>/ConfigureLibrary.cmake)
+
+# ################################################################################
+# Set system-specific data
+#
+MESSAGE(STATUS "#### System name is: ${CMAKE_SYSTEM_NAME}")
+
+#
+# Configure CTPP2 package
+#
+CONFIGURE_PACKAGE(ctpp2-config ctpp2 CTPP2)
+
+#
+# Configure CAS package
+#
+CONFIGURE_PACKAGE(cas-config cas CAS)
+
+# ################################################################################
+# Setup libraries & headers
+#
+
+INCLUDE_DIRECTORIES(include)
+
+IF("${CMAKE_COMPILER_IS_GNUCXX}" MATCHES "1")
+    SET(CMAKE_CXX_WARN_FLAGS  " -Wall -pedantic -Wno-long-long -Wno-inline -finline-functions ")
+
+    IF(ENABLE_OPTIMIZATION MATCHES "ON")
+        SET(CMAKE_CXX_FLAGS "${CXX_FLAGS} ${CMAKE_CXX_WARN_FLAGS} -O3 ")
+    ELSE(ENABLE_OPTIMIZATION MATCHES "OFF")
+        SET(CMAKE_CXX_FLAGS "${CXX_FLAGS} ${CMAKE_CXX_WARN_FLAGS} ")
+    ENDIF(ENABLE_OPTIMIZATION MATCHES "ON")
+
+    IF(DEBUG_MODE MATCHES "ON")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g ")
+    ENDIF(DEBUG_MODE MATCHES "ON")
+ENDIF("${CMAKE_COMPILER_IS_GNUCXX}" MATCHES "1")
+
+# ################################################################################
+# Lib binary
+#
+SET(MODULE_NAME "mod_<TMPL_var module_lc_name>")
+
+ADD_LIBRARY(${MODULE_NAME} MODULE src/<TMPL_var module_name>.cpp)
+TARGET_LINK_LIBRARIES(${MODULE_NAME} ${HAVE_cas})
+RENAME_MODULE(${MODULE_NAME} ${MODULE_NAME})
+
+# ################################################################################
+# Install modules
+#
+INSTALL(FILES ${MODULE_NAME}.so
+        DESTINATION libexec/cas
+        PERMISSIONS OWNER_READ OWNER_WRITE
+                    GROUP_READ
+                    WORLD_READ)
+
+# End.

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+VIEW=XMLView
+
+if [ -e /etc/cas/globalconf.a/${VIEW}.xml ]; then
+	cas-englobal ${VIEW} || true
+fi
+
+if [ -e /etc/cas/views.a/${VIEW}.xml ]; then
+	cas-enview ${VIEW} || true
+fi
+
+exit 0

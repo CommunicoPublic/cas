@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<!-- Example view -->
+<Module Name="ASExampleView"    Library="mod_example_view.so"    ModuleType="View"/>
+

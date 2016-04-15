@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+VIEW=ASExampleHandler
+
+if [ -e /etc/cas/globalconf.a/${VIEW}.xml ]; then
+	cas-englobal ${VIEW} || true
+fi
+
+if [ -e /etc/cas/handlers.a/${VIEW}.xml ]; then
+	cas-enhandler ${VIEW} || true
+fi
+
+exit 0

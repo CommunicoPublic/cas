@@ -1,0 +1,71 @@
+#!/bin/sh
+
+CAS_DIR=/etc/cas
+ME=`basename "$0"`
+
+enmod()
+{
+	DIR=$1
+	MODNAME=$2
+	if [ -f "${CAS_DIR}/${DIR}.e/${MODNAME}.xml" ]; then
+		echo "CAS module ${MODNAME} already enabled"
+	else
+		if [ -f "${CAS_DIR}/${DIR}.a/${MODNAME}.xml" ]; then
+			ln -s ${CAS_DIR}/${DIR}.a/${MODNAME}.xml ${CAS_DIR}/${DIR}.e/${MODNAME}.xml && echo "CAS module ${MODNAME} enabled"
+		else
+			echo "CAS module ${MODNAME} not found"
+		fi
+	fi
+}
+
+dismod()
+{
+	DIR=$1
+	MODNAME=$2
+
+	if [ -f "${CAS_DIR}/${DIR}.e/${MODNAME}.xml" ]; then
+		rm -f ${CAS_DIR}/${DIR}.e/${MODNAME}.xml && echo "CAS module ${MODNAME} disabled"
+	else
+		echo "CAS module ${MODNAME} not enabled"
+	fi
+}
+
+if [ "x$1" = "x" ]; then
+	echo "usage: $0 ModuleName"
+	exit 1
+fi
+
+if [ "$ME" = "cas-englobal" ]; then
+	enmod globalconf $1
+	exit 0
+elif [ "$ME" = "cas-disglobal" ]; then
+	dismod globalconf $1
+	exit 0
+elif [ "$ME" = "cas-enmod" ]; then
+	enmod modules $1
+	exit 0
+elif [ "$ME" = "cas-dismod" ]; then
+	dismod modules $1
+	exit 0
+elif [ "$ME" = "cas-enhost" ]; then
+	enmod vhosts $1
+	exit 0
+elif [ "$ME" = "cas-dishost" ]; then
+	dismod vhosts $1
+	exit 0
+elif [ "$ME" = "cas-enhandler" ]; then
+	enmod handlers $1
+        exit 0
+elif [ "$ME" = "cas-dishandler" ]; then
+        dismod handlers $1
+        exit 0
+elif [ "$ME" = "cas-enview" ]; then
+        envmod views $1
+        exit 0
+elif [ "$ME" = "cas-disview" ]; then
+        dismod views $1
+        exit 0
+fi
+
+exit 0
+

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+#DEBHELPER#
+
+VIEW=ASExampleModule
+
+if [ "$1" != "remove" -a "$1" != "purge" ]; then
+	exit 0
+fi
+
+if [ -e /etc/cas/globalconf.e/${VIEW}.xml ]; then
+	cas-disglobal ${VIEW} || true
+fi
+
+if [ -e /etc/cas/modules.e/${VIEW}.xml ]; then
+	cas-dismod ${VIEW} || true
+fi
+
+exit 0

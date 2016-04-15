@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- BSON View implementation -->
+<Module Name="BSONView"   Library="mod_bson_view.so" ModuleType="View"/>

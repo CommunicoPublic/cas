@@ -1,0 +1,398 @@
+Source: cas
+Section: web
+Priority: optional
+Maintainer: Andrey V. Shetukhin <stellar@communico.pro>
+Build-Depends: debhelper (>= 5),
+               libssl-dev (>= 0.9.7),
+               libctpp2-dev (>= 2.8.3),
+               libcurl4-openssl-dev,
+               cmake (>= 2.8.0),
+               ctpp2-utils (>= 2.8.3),
+               apache2-prefork-dev,
+               libapr1-dev (>= 1.2.7-8),
+               libpcre3-dev (>= 6.6),
+               libexpat1-dev (>= 1.95.2-2.1)
+Standards-Version: 3.9.5
+Homepage: http://cas.havoc.ru/
+Vcs-Browser: http://svn.havoc.ru/listing.php?repname=cas
+Vcs-Svn: http://svn.havoc.ru/svn/cas
+
+Package: cas3.8
+Architecture: any
+Depends: ${misc:Depends},
+         libapache2-mod-cas2 (= ${binary:Version}) | cas-fcgid3.8 (= ${binary:Version})
+Description: Crossplatform C++ Application Server
+ This package is a metapackage that, when installed, guarantees that you
+ have at least one of cas-fcgid or libapache2-mod-cas of the C++ Application
+ server installed. Removing this package won't remove CAS from your system,
+ however it may remove other packages that depend on this one.
+
+Package: libcas3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Description: CAS common libraries
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes common libraries.
+
+Package: libcas3.8-dbg
+Architecture: any
+Depends: ${misc:Depends},
+         libcas3.8 (= ${binary:Version})
+Description: CAS common libraries, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes common libraries, debugging symbols.
+
+Package: cas-bsonrpc-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS BSON RPC view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS BSON RPC view.
+
+Package: cas-bsonrpc-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-bsonrpc-view3.8 (= ${binary:Version})
+Description: CAS BSON RPC view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS BSON RPC view, debugging symbols
+
+Package: cas-bson-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS BSON view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS BSON view.
+
+Package: cas-bson-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-bson-view3.8 (= ${binary:Version})
+Description: CAS BSON view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS BSON view, debugging symbols
+
+Package: cas-ctpp-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS CTPP view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS CTPP view.
+
+Package: cas-ctpp-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-ctpp-view3.8 (= ${binary:Version})
+Description: CAS CTPP view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS CTPP view, debugging symbols
+
+Package: cas-jsonrpc-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS JSON RPC view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS JSON RPC view.
+
+Package: cas-jsonrpc-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-jsonrpc-view3.8 (= ${binary:Version})
+Description: CAS JSON RPC view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS JSON RPC view, debugging symbols
+
+Package: cas-json-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS JSON view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS JSON view.
+
+Package: cas-json-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-json-view3.8 (= ${binary:Version})
+Description: CAS JSON view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS JSON view, debugging symbols
+
+Package: cas-plain-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS plain view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS plain view.
+
+Package: cas-plain-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-plain-view3.8 (= ${binary:Version})
+Description: CAS plain view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS plain view, debugging symbols
+
+Package: cas-tabseparated-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS tab-separated view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS tab-separated view.
+
+Package: cas-tabseparated-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-tabseparated-view3.8 (= ${binary:Version})
+Description: CAS tab-separated view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS tab-separated view, debugging symbols
+
+Package: cas-xmlrpc-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS XML RPC view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS XML RPC view.
+
+Package: cas-xmlrpc-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-xmlrpc-view3.8 (= ${binary:Version})
+Description: CAS XML RPC view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS XML RPC view, debugging symbols
+
+Package: cas-xml-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS XML view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS XML view.
+
+Package: cas-xml-view3.8-dbg
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         cas-xml-view3.8 (= ${binary:Version})
+Description: CAS XML view, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS XML view, debugging symbols
+
+Package: cas-examples3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: CAS C++ sources for examples
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS C++ example module.
+
+Package: cas-example-handler3.8
+Provides: cas-handler3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-example-module3.8 (= ${binary:Version}),
+         cas-example-view3.8 (= ${binary:Version}),
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS example handler
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS example handler.
+
+Package: cas-example-module3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS example module
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS example module.
+
+Package: cas-example-view3.8
+Provides: cas-view3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS example view
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS example view.
+
+Package: cas-configs3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ucf
+Description: CAS configuration files
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS configuration files.
+
+Package: cas-cli3.8
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-configs3.8 (= ${binary:Version})
+Description: CAS command-line utilities
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS command-line utilities.
+
+Package: cas-cli3.8-dbg
+Architecture: any
+Depends: ${misc:Depends},
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS command-line utilities, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS command-line utilities, debugging symbols
+
+Package: libapache2-mod-cas2
+Section: httpd
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         ${apache2:Depends},
+         cas-view3.8 | cas-example-view3.8 (= ${binary:Version}),
+         cas-configs3.8 (= ${binary:Version}),
+         cas-cli3.8 (= ${binary:Version})
+Description: Loadable module for Apache 2.X HTTP server
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes loadable module for Apache 2.X HTTP server.
+
+Package: libapache2-mod-cas2-dbg
+Section: httpd
+Architecture: any
+Depends: ${misc:Depends},
+         libapache2-mod-cas2 (= ${binary:Version}),
+Description: Loadable module for Apache 2.X HTTP server, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes loadable module for Apache 2.X HTTP server, debugging symbols
+
+Package: cas-fcgid3.8
+Section: httpd
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         cas-view3.8 | cas-example-view3.8 (= ${binary:Version}),
+         cas-configs3.8 (= ${binary:Version}),
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS FastCGI daemon
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS FastCGI daemon.
+
+Package: cas-fcgid3.8-dbg
+Section: httpd
+Architecture: any
+Depends: ${misc:Depends},
+         cas-fcgid3.8 (= ${binary:Version}),
+Description: CAS FastCGI daemon, debugging symbols
+ CAS is an fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++.
+ .
+ This package includes CAS FastCGI daemon, debugging symbols
+
+Package: cas-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends},
+         libcas3.8 (= ${binary:Version}),
+         cas-cli3.8 (= ${binary:Version})
+Description: CAS header files and documentation
+ Fast, extensible and powerful HTTP and XML/JSON/BSON-RPC Application Server,
+ written in C++;
+ .
+ This package includes header files and documentation.
+

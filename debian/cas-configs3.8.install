@@ -1,0 +1,3 @@
+etc/cas/global-config.xml
+etc/cas/vhosts.a/example.xml
+usr/share/cas/conf/*

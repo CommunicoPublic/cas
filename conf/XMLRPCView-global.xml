@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- XML RPC View implementation -->
+<Module Name="XMLRPCView" Library="mod_xmlrpc_view.so" ModuleType="View"/>

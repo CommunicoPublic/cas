@@ -1,0 +1,11 @@
+ *NOT* TODO LIST
+ ---------------
+
+ This list describes things that will NEVER be doing in CAS project.
+
+ - Autotools
+ - Scons
+ - CVS
+ - Boost C++
+ - Changing license to any other
+ - "Build Every Night/Week/Month"

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<Handler name="ASExampleHandler">
+	<DebugLevel>1</DebugLevel>
+	<ExampleKey1>\110\145\154\154\157, \0x57\0x6f\0x72\0x6c\0x64!</ExampleKey1>
+	<ExampleKey2 name="\110\145\154\154\157, \0x57\0x6f\0x72\0x6c\0x64!" />
+</Handler>
+

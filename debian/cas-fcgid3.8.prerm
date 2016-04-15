@@ -1,0 +1,50 @@
+#!/bin/sh
+
+set -e
+
+USER=cas
+GROUP=cas
+
+# Try to stop the server in a sane way. If it does not success let the admin
+# do it himself. No database directories should be removed while the server
+# is running!
+stop_server()
+{
+	set +e
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+		invoke-rc.d cas-fcgid stop
+	else
+		/etc/init.d/cas-fcgid stop
+	fi
+	errno=$?
+	set -e
+
+	if [ "$?" != 0 ]; then
+		echo "Trying to stop the CAS FastCGI server resulted in exitcode $?." 1>&2
+		echo "Stop it yourself and try again!" 1>&2
+		exit 1
+	fi
+}
+
+
+case "$1" in
+	purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+		stop_server
+		sleep 2
+		;;
+	*)
+		echo "postrm called with unknown argument '$1'" 1>&2
+		exit 1
+	;;
+esac
+
+if [ "$1" = "purge" ] ; then
+	rm -rf /etc/cas-fcgid
+
+	deluser --system $USER || true
+	delgroup --system --only-if-empty $GROUP || true
+fi
+
+rm -f /var/run/cas-fcgid.pid
+
+#DEBHELPER#

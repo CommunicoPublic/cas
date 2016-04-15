@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- CTPP2 View implementation -->
+<Module Name="CTPPView"  Library="mod_ctpp_view.so" ModuleType="View"/>

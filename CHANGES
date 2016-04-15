@@ -1,0 +1,223 @@
+ CAS version 3.8.0 change log
+ ----------------------------
+
+ Legend
+ ------
+   + = New feature
+   * = Improved feature
+   - = Removed feature
+   ! = Bug fixed
+   = = Unresolved
+   # = Other stuff
+
+ Version 3.8.1 (10.03.2016)
+ --------------------------
+ 01. + FastCGI daemon
+
+ Version 3.7.4 (11.01.2016)
+ --------------------------
+ 01. ! XML Parser bug fixes
+
+ Version 3.7.3 (05.10.2015)
+ --------------------------
+  01. ! Uploader bug fixes
+
+ Version 3.7.2 (20.03.2015)
+ --------------------------
+  01. ! Bug fixes
+
+ Version 3.7.1 (04.08.2014)
+ --------------------------
+  01. + Support of Apache 2.4 API
+
+ Version 3.7.0 (02.06.2014)
+ --------------------------
+  01. + Support of BSON/ BSON-RPC
+  02. ! Multipart parser fix
+
+ Version 3.5.7 (03.10.2012)
+ --------------------------
+  01. + Port tp CentOS 6
+  02. ! Fixes for gcc 4.7 on CentOS
+
+ Version 3.5.6 (29.05.2012)
+ --------------------------
+   01. ! Fixes in XMLRPCView
+
+ Version 3.5.5 (24.02.2012)
+ --------------------------
+   01. + HTTP redirector
+
+ Version 3.5.4 (07.02.2012)
+ --------------------------
+   01. * Debian packages with dependencies
+
+ Version 3.5.3 (29.10.2011)
+ --------------------------
+   01. + New field in ASRequest structure: uri_components_unescaped
+
+ Version 3.5.2 (25.08.2011)
+ --------------------------
+   02. + New request handler: JSON-RPC
+
+ Version 3.5.1 (12.07.2011)
+ --------------------------
+   01. + New fields in ASRequest structure: referrer & user_agent
+
+ Version 3.5.0 (20.06.2011)
+ --------------------------
+   01. + New handler for RFC 1867 file uploading
+   02. + Access to raw HTTP POSTDATA
+
+ Version 3.4.4 (08.04.2011)
+ --------------------------
+   01. + New class: ASXMLRPCClient
+
+ Version 3.4.3 (28.03.2011)
+ --------------------------
+   01. + New class: Profiler
+
+ Version 3.4.2 (15.02.2011)
+ --------------------------
+   01. + New fields in ASRequest structure: local_ip and system_hostname
+   02. ! Fixes for Ubuntu Linux.
+
+ Version 3.4.1 (17.01.2011)
+ --------------------------
+   01. ! Fixes in function ReadRequest (Apache13/2X, Content-type header)
+   02. + New class: ASNetworkRange
+
+ Version 3.4.0 (27.12.2010)
+ --------------------------
+   01. + New version of CAS.
+
+ Version 3.3.4 (02.11.2010)
+ --------------------------
+   01. + MD5 hash class
+
+ Version 3.3.3 (14.10.2010)
+ --------------------------
+   01. ! Bugfix in ASLogger.cpp
+
+ Version 3.3.2 (07.09.2010)
+ --------------------------
+   01. + Events for objects stored in pool
+
+ Version 3.3.1 (30.08.2010)
+ --------------------------
+   01. * XMLRPCView improvements
+   02. ! Fixes in CTPPView
+
+ Version 3.3.0 (17.02.2010)
+ --------------------------
+   01. + Allow multiple views per location
+   02. # CTPP2View deprecated
+   03. + Escape sequences in XML configuration files
+   04. + New field for ASRequest object: server_time
+   05. + New view: HTTPRedirectView
+
+ Version 3.2.6 (09.02.2010)
+ --------------------------
+   01. + Data filters
+
+ Version 3.2.5 (03.01.2010)
+ --------------------------
+   01. + New Views: Tab separated view, XML View
+
+ Version 3.2.4 (14.01.2010)
+ --------------------------
+   01. # Bump Copyright year
+   02. + New function: MD5Hex
+   03. + Includes in global config file
+   04. + New View: CTPP view
+
+ Version 3.2.3 (15.12.2009)
+ --------------------------
+   01. ! Fix Aapche 1.3 status line
+   02. ! Support of a lot of HTTP status codes
+
+ Version 3.2.2 (08.12.2009)
+ --------------------------
+   01. + Port to gcc 4.4.X
+   02. ! Fixes in logger subsystem
+
+ Version 3.2.1 (27.11.2009)
+ --------------------------
+   01. + Print resource usage
+   02. + XMLRPC and PlainData View
+   03. + XML RPC request parser
+   04. * Logger improvements
+   05. + With environment variable CAS_GLOBAL_CONFIG
+         is possible to set custom clobal config file
+   06. + cas-globalconf utility also supports CAS_GLOBAL_CONFIG
+   07. + Port to FreeBSD 8.X
+
+ Version 3.2.0 (10.09.2009)
+ --------------------------
+   01. + New field for ASRequest object: unparsed_uri
+
+ Version 3.1.12 (09.09.2009)
+ ---------------------------
+   01. ! Apache2-specific fixes
+
+ Version 3.1.11 (04.03.2009)
+ ---------------------------
+   01. + Support of ';' paramaters delimiter in GET/POST request
+
+ Version 3.1.10 (30.01.2009)
+ ---------------------------
+   01. # Migration to CTPP 2.4.X
+
+ Version 3.1.9 (05.12.2008)
+ --------------------------
+   01. ! Initialization && destruction order in per-server
+         configuration
+
+ Version 3.1.8 (02.12.2008)
+ --------------------------
+   01. ! ASServerManager::ShutdownManager module shutdown order
+   02. + JSON View
+
+ Version 3.1.7 (27.10.2008)
+ --------------------------
+   01. ! CentOS _LARGEFILE64_SOURCE fix
+
+ Version 3.1.6 (20.08.2008)
+ --------------------------
+   01. + Support of form-based file uploading (RFC 1867)
+   02. + Basic access authentication (RFC 2617)
+
+ Version 3.1.5 (06.08.2008)
+ --------------------------
+   01. ! Bug fixes
+
+ Version 3.1.4 (30.07.2008)
+ --------------------------
+   01. + CAS-XT tool
+   02. + GNU-getopt-like command line parser
+   03. ! Bug fixes
+
+ Version 3.1.3 (20.07.2008)
+ --------------------------
+   01. # First public release
+   02. + Apache 2.X DSO support
+
+ Version 3.1.2 (18.07.2008)
+ --------------------------
+   01. + Support of "Include" tag in configuration files
+   02. ! Bug fixes in API
+   03. * Internal API iprovements
+   04. # Last test release
+
+ Version 3.1.1 (15.07.2008)
+ --------------------------
+   01. + A lot of new functions and API changes
+   02. # Test-only release
+
+ Version 3.1.0 (26.06.2008)
+ --------------------------
+   01. # Early beta
+
+ Version 0.0.1 (15.06.2008)
+ --------------------------
+   01. # Proof-of-concept release

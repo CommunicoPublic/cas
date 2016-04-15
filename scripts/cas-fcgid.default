@@ -1,0 +1,2 @@
+# Enable daemon
+ENABLE_CAS_FCGID=yes

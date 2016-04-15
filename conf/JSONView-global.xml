@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- JSON View implementation -->
+<Module Name="JSONView"   Library="mod_json_view.so" ModuleType="View"/>

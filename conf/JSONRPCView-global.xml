@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- JSON RPC View implementation -->
+<Module Name="JSONRPCView"   Library="mod_jsonrpc_view.so" ModuleType="View"/>

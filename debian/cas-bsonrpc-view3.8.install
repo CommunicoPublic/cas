@@ -1,0 +1,2 @@
+usr/lib/cas/mod_bsonrpc_view.so
+etc/cas/globalconf.a/BSONRPCView.xml

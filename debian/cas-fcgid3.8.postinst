@@ -1,0 +1,53 @@
+#!/bin/sh
+
+set -e
+
+GROUP="cas"
+USER="cas"
+DATADIR="/nonexistent"
+
+# Try to stop the server in a sane way. If it does not success let the admin
+# do it himself. No database directories should be removed while the server
+# is running!
+start_server()
+{
+	set +e
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+		invoke-rc.d cas-fcgid start
+	else
+		/etc/init.d/cas-fcgid start
+	fi
+	errno=$?
+	set -e
+
+	if [ "$?" != 0 ]; then
+		echo "Trying to start the Iris server resulted in exitcode $?." 1>&2
+		exit 1
+	fi
+}
+
+case "$1" in
+configure)
+	# creating cas group if it isn't already there
+	if ! getent group $GROUP >/dev/null ; then
+		# Adding system group
+		addgroup --system $GROUP >/dev/null
+	fi
+
+	# creating cas user if it isn't already there
+	if ! getent passwd $USER >/dev/null ; then
+		# Adding system user
+		adduser \
+		--system \
+		--disabled-login \
+		--ingroup $GROUP \
+		--home $DATADIR \
+		--gecos "CAS FastCGI server" \
+		--shell /bin/false \
+		$USER  >/dev/null
+	fi
+	start_server
+	;;
+esac
+
+#DEBHELPER#

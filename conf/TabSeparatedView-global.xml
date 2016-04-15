@@ -1,0 +1,3 @@
+<?xml version="1.0" ?>
+<!-- Tab-separated list -->
+<Module Name="TabSeparatedView" Library="mod_tabseparated_view.so" ModuleType="View"/>

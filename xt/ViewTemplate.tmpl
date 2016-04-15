@@ -1,0 +1,337 @@
+/*-
+ * Copyright (c) 2005 - 2016 CAS Dev Team
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 4. Neither the name of the CAS Dev. Team nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *      (<TMPL_var module_name>.hpp
+ *
+ * $CAS$
+ */
+
+#include "ASDebugHelper.hpp"
+#include "ASLoadableObject.hpp"
+#include "ASLoader.hpp"
+#include "ASLogger.hpp"
+#include "ASUtil.hpp"
+#include "ASView.hpp"
+
+#include <sys/time.h>
+
+using namespace CAS;
+
+namespace CAS_MOD
+{
+
+/**
+  @class <TMPL_var module_name>
+  @brief Application server object
+*/
+class <TMPL_var module_name>:
+  public ASView
+{
+public:
+	/**
+	  @brief A virtual destructor
+	*/
+	~<TMPL_var module_name>() throw();
+
+	/**
+	  @brief Constructor
+	*/
+	<TMPL_var module_name>();
+
+private:
+	// Put your variables here
+	//
+
+	/**
+	  @brief Get handler name
+	*/
+	CCHAR_P GetObjectName() const;
+
+	/**
+	  @brief Initialize module
+	  @param oConfiguration - module configuration
+	  @param oModulesPool - pool of modules
+	  @param oObjectPool - pool of objects
+	  @param oLogger - logger object
+	  @return 0 - if success, -1 - otherwise
+	*/
+	INT_32 InitModule(CTPP::CDT  & oConfiguration,
+	                  ASPool     & oModulesPool,
+	                  ASPool     & oObjectPool,
+	                  ASLogger   & oLogger);
+
+	/**
+	  @brief Initialize server hook
+	  @param oConfiguration - module configuration
+	  @param oGlobalPool - pool of global objects
+	  @param oServerPool - pool of per-server objects
+	  @param oLogger - logger object
+	  @return 0 - if success, -1 - otherwise
+	*/
+	INT_32 InitServer(CTPP::CDT  & oConfiguration,
+	                  ASPool     & oGlobalPool,
+	                  ASPool     & oServerPool,
+	                  ASLogger   & oLogger);
+
+	/**
+	  @brief Initialize location
+	  @param oGlobalPool - global pool of objects
+	  @param oVhostPool - virtual host pool
+	  @param oLocationConfig - handler configuration
+	  @param pContextData - context data
+	  @param oLogger - application server logger
+	  @return HANDLER_OK - if success, HANDLER_ERROR - if any error occured
+	*/
+	INT_32 InitLocation(ASPool       & oGlobalPool,
+	                    ASPool       & oVhostPool,
+	                    CTPP::CDT    & oLocationConfig,
+	                    ASObject   * & pContextData,
+	                    ASLogger     & oLogger);
+
+	/**
+	  @brief Write HTTP response
+	  @param oData - data model
+	  @param oResponse - response object
+	  @param pResponseWriter - response writer object
+	  @param oGlobalPool - global pool of objects
+	  @param oVhostPool - virtual host pool
+	  @param oRequestPool - requeset data pool
+	  @param pContextData - context data
+	  @param oIMC - Inter-Module communication object
+	  @param oLogger - application server logger
+	  @return VIEW_OK - if success, VIEW_ERROR - if any error occured
+	*/
+	INT_32 WriteResponse(CTPP::CDT         & oData,
+	                     ASResponse        & oResponse,
+	                     ASResponseWriter  & pResponseWriter,
+	                     ASPool            & oGlobalPool,
+	                     ASPool            & oVhostPool,
+	                     ASPool            & oRequestPool,
+	                     CTPP::CDT         & oLocationConfig,
+	                     ASObject          * pContextData,
+	                     CTPP::CDT         & oIMC,
+	                     ASLogger          & oLogger);
+
+	/**
+	  @brief Shutdown location hook
+	  @param oGlobalPool - global pool of objects
+	  @param oVhostPool - virtual host pool
+	  @param oLocationConfig - handler configuration
+	  @param pContextData - context data
+	  @param oLogger - application server logger
+	  @return HANDLER_OK - if success, HANDLER_ERROR - if any error occured
+	*/
+	INT_32 ShutdownLocation(ASPool       & oGlobalPool,
+	                        ASPool       & oVhostPool,
+	                        CTPP::CDT    & oLocationConfig,
+	                        ASObject   * & pContextData,
+	                        ASLogger     & oLogger);
+
+	/**
+	  @brief Shutdown server hook
+	  @param oConfiguration - module configuration
+	  @param oGlobalPool - pool of global objects
+	  @param oServerPool - pool of per-server objects
+	  @param oLogger - logger object
+	  @return 0 - if success, -1 - otherwise
+	*/
+	INT_32 ShutdownServer(CTPP::CDT  & oConfiguration,
+	                      ASPool     & oGlobalPool,
+	                      ASPool     & oServerPool,
+	                      ASLogger   & oLogger);
+
+	/**
+	  @brief Shutdown module
+	  @param oConfiguration - module configuration
+	  @param oModulesPool - pool of modules
+	  @param oGlobalPool - global pool of objects
+	  @param oLogger - logger object
+	  @return 0 - if success, -1 - otherwise
+	*/
+	INT_32 ShutdownModule(CTPP::CDT  & oConfiguration,
+	                      ASPool     & oModulesPool,
+	                      ASPool     & oGlobalPool,
+	                      ASLogger   & oLogger);
+};
+
+EXPORT_HANDLER((<TMPL_var module_name>)
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Class (<TMPL_var module_name>
+//
+
+//
+// A constructor
+//
+(<TMPL_var module_name>::(<TMPL_var module_name>()
+{
+	;;
+}
+
+//
+// Get handler name
+//
+CCHAR_P <TMPL_var module_name>::GetObjectName() const { return "(<TMPL_var module_name>"; }
+
+//
+// Global initialization
+//
+INT_32 <TMPL_var module_name>::InitModule(CTPP::CDT  & oConfiguration,
+                                    ASPool     & oModulesPool,
+                                    ASPool     & oObjectPool,
+                                    ASLogger   & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "(<TMPL_var module_name>::InitModule");
+
+return VIEW_OK;
+}
+
+//
+// Initialize server hook
+//
+INT_32 <TMPL_var module_name>::InitServer(CTPP::CDT  & oConfiguration,
+                                    ASPool     & oGlobalPool,
+                                    ASPool     & oServerPool,
+                                    ASLogger   & oLogger)
+{
+        DEBUG_HELPER(&oLogger, "<TMPL_var module_name>::InitServer");
+
+return VIEW_OK;
+}
+
+//
+// Initialize current location
+//
+INT_32 <TMPL_var module_name>::InitLocation(ASPool       & oGlobalPool,
+                                    ASPool       & oVhostPool,
+                                    CTPP::CDT    & oLocationConfig,
+                                    ASObject   * & pContextData,
+                                    ASLogger     & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "<TMPL_var module_name>::InitLocation");
+
+return VIEW_OK;
+}
+
+//
+// Write HTTP response
+//
+INT_32 <TMPL_var module_name>::WriteResponse(CTPP::CDT         & oData,
+                                             ASResponse        & oResponse,
+                                             ASResponseWriter  & pResponseWriter,
+                                             ASPool            & oGlobalPool,
+                                             ASPool            & oVhostPool,
+                                             ASPool            & oRequestPool,
+                                             CTPP::CDT         & oLocationConfig,
+                                             ASObject          * pContextData,
+                                             CTPP::CDT         & oIMC,
+                                             ASLogger          & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "(<TMPL_var module_name>::WriteResponse");
+
+	INT_32 iRC  = VIEW_ERROR;
+	try
+	{
+		DEBUG_HELPER_MESSAGE("Write response headers");
+		// Write response headers
+		oResponseWriter.WriteHeader(oResponse);
+
+		// Put your code here
+		//
+
+		DEBUG_HELPER_MESSAGE("Write response body");
+		// Write data to data collector
+		// oResponseWriter.GetBodyOutputCollector() -> Collect(vData, iDataLength);
+
+		iRC = VIEW_OK;
+	}
+	catch (std::exception & e)
+	{
+		STLW::string sError("Error in (<TMPL_var module_name>: ");
+		sError += e.what();
+		oLogger.Emerg(sError.c_str());
+	}
+	catch (...)
+	{
+		oLogger.Emerg("Unknown fatal error in (<TMPL_var module_name>");
+	}
+
+return iRC;
+}
+
+//
+// location hook
+//
+INT_32 <TMPL_var module_name>::ShutdownLocation(ASPool       & oGlobalPool,
+                        ASPool       & oVhostPool,
+                        CTPP::CDT    & oLocationConfig,
+                        ASObject   * & pContextData,
+                        ASLogger     & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "<TMPL_var module_name>::ShutdownLocation");
+
+return VIEW_OK;
+}
+
+//
+// Shutdown server hook
+//
+INT_32 <TMPL_var module_name>::ShutdownServer(CTPP::CDT  & oConfiguration,
+                               ASPool     & oGlobalPool,
+                               ASPool     & oServerPool,
+                               ASLogger   & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "<TMPL_var module_name>::ShutdownServer");
+
+return VIEW_OK;
+}
+
+//
+// Shutdown module
+//
+INT_32 <TMPL_var module_name>::ShutdownModule(CTPP::CDT  & oConfiguration,
+                               ASPool     & oModulesPool,
+                               ASPool     & oGlobalPool,
+                               ASLogger   & oLogger)
+{
+	DEBUG_HELPER(&oLogger, "<TMPL_var module_name>::ShutdownModule");
+
+return VIEW_OK;
+}
+
+//
+// A destructor
+//
+<TMPL_var module_name>::~<TMPL_var module_name>() throw()
+{
+	;;
+}
+
+} // namespace CAS_MOD
+// End.
+
