@@ -218,7 +218,7 @@ void XMLView::DumpData(const CTPP::CDT & oData, CTPP::OutputCollector * pCollect
 	else if (oEtype == CDT::HASH_VAL)
 	{
 		pCollector-> Collect(C_HASH_OPEN, sizeof(C_HASH_OPEN) - 1);
-		CDT::ConstIterator itoData = oData.Begin();
+		CDTConstIterator itoData = oData.Begin();
 		while(itoData != oData.End())
 		{
 			// Store hash key

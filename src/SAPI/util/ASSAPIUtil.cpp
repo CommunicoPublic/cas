@@ -42,7 +42,7 @@ void StorePair(CTPP::CDT     & oRetVal,
                STLW::string  & sValue)
 {
 	// Search value with same key
-	CTPP::CDT::Iterator itoRetVal = oRetVal.Find(sKey);
+	CTPP::CDTIterator itoRetVal = oRetVal.Find(sKey);
 
 	// If not found, store as scalar
 	if (itoRetVal == oRetVal.End()) { oRetVal[sKey] = sValue; }

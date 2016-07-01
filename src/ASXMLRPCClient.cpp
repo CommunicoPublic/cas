@@ -190,7 +190,7 @@ static void DumpXMPRPCData(const CTPP::CDT & oData, CTPP::OutputCollector * pCol
 		case CTPP::CDT::HASH_VAL:
 			{
 				pCollector -> Collect(C_HASH_VAL_S, sizeof(C_HASH_VAL_S) - 1);
-				CTPP::CDT::ConstIterator itHash = oData.Begin();
+				CTPP::CDTConstIterator itHash = oData.Begin();
 				while (itHash != oData.End())
 				{
 					pCollector -> Collect(C_MEMBER_S, sizeof(C_MEMBER_S) - 1);
@@ -300,7 +300,7 @@ ASXMLRPCClient::ASXMLRPCClient(const STLW::string  & sURL,
 
 	if (oHeaders.GetType() == CDT::HASH_VAL)
 	{
-		CDT::ConstIterator itoHeaders = oHeaders.Begin();
+		CDTConstIterator itoHeaders = oHeaders.Begin();
 		while (itoHeaders != oHeaders.End())
 		{
 			STLW::string sHeader(itoHeaders -> first);
