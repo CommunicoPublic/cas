@@ -100,7 +100,7 @@ INT_32 MainProcess::Setup()
 	snprintf(szProcTitle, 1024, "cas-fcgid: main process %s %s",
 	                            oWorkerContext.config.global_config_file.c_str(),
 	                            oWorkerContext.config.host_config_file.c_str());
-	setproctitle(szProcTitle);
+	_setproctitle(szProcTitle);
 
 	DEBUG_HELPER_MESSAGE("Register signal handlers");
 	SignalHandler & oSigHandler = SignalHandler::Instance();
@@ -484,7 +484,7 @@ INT_32 MainProcess::ChildFn(const UINT_32 iScoreboardPos)
 
 		CHAR_8 szProcTitle[1024];
 		snprintf(szProcTitle, 1024, "cas-fcgid: worker process");
-		setproctitle(szProcTitle);
+		_setproctitle(szProcTitle);
 
 		oWorkerContext.scoreboard.ReadScoreboard(iScoreboardPos, oRec);
 		oRec.uri[0] = '\0';

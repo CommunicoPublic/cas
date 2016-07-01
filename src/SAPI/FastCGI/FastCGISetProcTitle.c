@@ -52,7 +52,7 @@ void initproctitle(int argc, char **argv)
 	}
 }
 
-void setproctitle(const char *prog)
+void _setproctitle(const char *prog)
 {
 	int i;
 	char buf[SPT_BUFSIZE];

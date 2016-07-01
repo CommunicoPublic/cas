@@ -7,7 +7,7 @@ extern "C"
 #endif
 
 void initproctitle (int argc, char **argv);
-void setproctitle (const char *prog);
+void _setproctitle (const char *prog);
 
 #ifdef __cplusplus
 }

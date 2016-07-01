@@ -230,7 +230,7 @@ INT_32 WorkerProcess::HandleConnection(const INT_32  iClientSocket)
 				oASRequest.request_type   = ASRequest::HTTP_REQUEST;
 
 				snprintf(szProcTitle, 1024, "cas-fcgid: %s %s", sReqMethod.c_str(), oASRequest.uri.c_str());
-				setproctitle(szProcTitle);
+				_setproctitle(szProcTitle);
 
 				oASRequest.headers.Erase("Request-Uri");
 				oASRequest.headers.Erase("Document-Uri");
@@ -477,7 +477,7 @@ INT_32 WorkerProcess::HandleConnection(const INT_32  iClientSocket)
 						                            oASRequest.uri.c_str());
 					}
 
-					setproctitle(szProcTitle);
+					_setproctitle(szProcTitle);
 
 					// Check request method
 					if ((oASRequest.request_method & oASLocation.allowed_methods) == 0)
