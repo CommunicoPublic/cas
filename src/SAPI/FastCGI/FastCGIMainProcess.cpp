@@ -46,6 +46,7 @@
 #include <sys/wait.h>
 #include <sys/un.h>
 #include <netinet/tcp.h>
+#include <netinet/in.h>
 
 #include <errno.h>
 #include <fcntl.h>
