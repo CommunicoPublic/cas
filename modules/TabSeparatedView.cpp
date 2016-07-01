@@ -166,7 +166,7 @@ INT_32 TabSeparatedView::WriteResponse(CTPP::CDT         & oData,
 		}
 		else if (oEtype == CDT::HASH_VAL)
 		{
-			CDT::ConstIterator itoData = oData.Begin();
+			CDTConstIterator itoData = oData.Begin();
 			while(itoData != oData.End())
 			{
 				// Key

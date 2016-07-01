@@ -32,6 +32,7 @@
 #include "ASCookie.hpp"
 
 #include <stdio.h>
+#include <time.h>
 
 namespace CAS // C++ Application Server
 {

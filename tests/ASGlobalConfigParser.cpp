@@ -88,7 +88,7 @@ void DumpData(UINT_32 iLevel, const CDT & oData, std::string &sResult)
 		case CDT::HASH_VAL:
 			{
 				sResult += "\n";
-				CDT::ConstIterator itHash = oData.Begin();
+				CDTConstIterator itHash = oData.Begin();
 				while (itHash != oData.End())
 				{
 					for (UINT_32 iJ = 0; iJ < iLevel; iJ++) { sResult += "      "; }

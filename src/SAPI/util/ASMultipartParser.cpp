@@ -25,7 +25,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *      ASMultipartParser.ñpp
+ *      ASMultipartParser.cpp
  *
  * $CAS$
  */
@@ -41,6 +41,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 namespace CAS // C++ Application Server
 {
